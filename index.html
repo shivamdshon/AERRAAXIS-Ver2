@@ -34,7 +34,8 @@
     /* Hero */
     .hero{isolation:isolate;position:relative;overflow:hidden;min-height:539px;background:var(--navy);color:var(--ivory);display:grid;place-items:center}.hero-motif{position:absolute;z-index:-1;top:0;right:0;width:530px;height:100%;object-fit:cover;object-position:right top}.hero-copy{width:100%;padding:40px var(--gutter);text-align:center}.hero h1{margin:0;font:600 clamp(40px,3.35vw,46px)/1.1 "Cormorant Garamond",Georgia,serif;letter-spacing:.05em;text-transform:uppercase}.hero-description{margin:27px auto 0;max-width:590px;color:#d7d2ca;font-size:16px;font-weight:500;line-height:2.25;letter-spacing:.045em}.hero-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:42px auto 0;color:#bb5325;font-size:14px;line-height:1}.hero-divider::before,.hero-divider::after{content:"";width:42px;height:1px;background:currentColor;opacity:.78}.hero-divider span{letter-spacing:.22em}.hero-divider strong{font-size:20px;font-weight:400;line-height:.5}
 
-    /* Culture */
+    .hero-mobile-actions{display:none}
+/* Culture */
     .culture{position:relative;min-height:428px;background:linear-gradient(to bottom,var(--forest) 0 calc(100% - 13px),var(--paper) calc(100% - 13px));color:var(--ivory);overflow:hidden}
 .culture .wrap{
 display:grid;
@@ -89,7 +90,7 @@ padding-inline:32px;
       .hero-copy{padding:42px 24px 70px}
       .hero-copy::before{content:"";display:block;width:170px;height:88px;margin:0 auto 34px;background:url('logo-light.webp') center/contain no-repeat}
       .hero h1{font-size:clamp(34px,10vw,46px);line-height:1.08}
-      .hero-description{max-width:420px;margin-top:24px;font-size:15px;line-height:1.9;letter-spacing:0;text-wrap:balance;text-wrap:pretty}
+      .hero-description{max-width:360px;margin-top:24px;font-size:15px;line-height:1.9;letter-spacing:0;text-wrap:balance;text-wrap:pretty}
       .hero-divider{margin-top:32px}
       .culture .wrap{grid-template-columns:1fr;gap:42px;padding:48px 24px;width:100%}.culture h2{font-size:clamp(37px,10vw,45px)}.culture-copy{display:flex;justify-content:center;width:100%}.culture-copy-row{display:block;width:100%}.culture-ornament{display:none}.culture-text{display:block;width:100%;max-width:360px;margin-left:auto;margin-right:auto;padding:0;font-size:15px;line-height:1.8;text-align:center;text-wrap:balance}
       .quote{min-height:535px;display:block;padding:76px 24px 195px}.quote-sun{bottom:13px;width:205px;height:230px;opacity:.92}.quote-copy{width:min(92vw,420px);margin:0 auto;font-size:clamp(29px,8.2vw,35px);line-height:1.42;text-wrap:balance;text-wrap:pretty}.quote-tree{right:14px;bottom:31px;width:116px}.quote-copy br{display:block}
@@ -168,7 +169,7 @@ padding-inline:32px;
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <img class="hero-motif" src="hero-motif.webp" alt="">
-      <div class="hero-copy"><h1 id="hero-title">Strategy for the <span class="gold">next era</span></h1><p class="hero-description">We build political campaigns rooted in culture,<br> sharpened by research, and tested against the ground.</p><div class="hero-divider" aria-hidden="true"><span>•••• ◆ ◆</span><strong>✦</strong><span>◆ ◆ ••••</span></div></div>
+      <div class="hero-copy"><h1 id="hero-title">Strategy for the <span class="gold">next era</span></h1><p class="hero-description">We build political campaigns rooted in culture, sharpened by research, and tested against the ground.</p><div class="hero-divider" aria-hidden="true"><span>•••• ◆ ◆</span><strong>✦</strong><span>◆ ◆ ••••</span></div></div>
     </section>
     <section class="culture" aria-labelledby="culture-title">
       
