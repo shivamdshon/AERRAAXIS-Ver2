@@ -87,8 +87,7 @@ padding-inline:32px;
       .hero{min-height:640px;background:linear-gradient(180deg,var(--navy) 0%,#16224b 100%);align-items:flex-start}
       .hero-motif{display:none}
       .hero-copy{padding:42px 24px 70px}
-      .hero-copy::before{display:none;content:none}.hero-logo{display:block;width:220px;max-width:60vw;margin:0 auto 34px;transition:opacity .28s ease,transform .28s ease}
-@media (min-width:861px){.hero-logo{display:none!important}}
+      .hero-copy::before{content:"";display:block;width:170px;height:88px;margin:0 auto 34px;background:url('logo-light.webp') center/contain no-repeat}
       .hero h1{font-size:clamp(34px,10vw,46px);line-height:1.08}
       .hero-description{max-width:330px;margin-top:24px;font-size:15px;line-height:1.8;letter-spacing:.02em}
       .hero-divider{margin-top:32px}
@@ -102,39 +101,57 @@ padding-inline:32px;
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-nav,.nav-toggle span,.button{transition:none}}
   
 @media (max-width:860px){
-.site-header.mobile-top{
-  background:linear-gradient(180deg,var(--navy) 0%,#16224b 100%);border-bottom-color:transparent;transition:background .25s,border-color .25s}
-.site-header.mobile-top .brand{opacity:0;pointer-events:none}
-.site-header.mobile-scrolled{background:var(--paper)!important;border-bottom:1px solid rgba(20,32,46,.08)!important}
-.site-header.mobile-scrolled .brand{opacity:1}
-.hero-logo{width:220px;margin:10px auto 28px}
-.hero-description{margin-bottom:22px}
-.hero-divider{margin-top:22px}
-}
-
-
-/* ===== Mobile refinements v3 ===== */
-@media (max-width:860px){
-.quote{
-  min-height:620px !important;
-  padding:76px 24px 210px !important;
-}
-.quote-copy{
-  margin-bottom:70px !important;
-}
-.quote-sun{
-  bottom:36px !important;
-}
-.quote-tree{
-  bottom:60px !important;
-}
-.hero-copy::before{
-  transition:opacity .28s ease, transform .28s ease;
-}
-.hero-copy.logo-hidden .hero-logo{opacity:0;transform:translateY(-20px)}
-.site-header .brand{
-  transition:opacity .28s ease;
-}
+  .site-header.mobile-top{
+    background:linear-gradient(180deg,var(--navy) 0%,#16224b 100%);
+    border-bottom-color:transparent;
+    transition:background .25s ease,border-color .25s ease;
+  }
+  .site-header.mobile-top .brand{opacity:0;pointer-events:none}
+  .site-header.mobile-top .nav-toggle{color:var(--ivory)}
+  .site-header.mobile-scrolled{
+    background:var(--paper);
+    border-bottom:1px solid rgba(20,32,46,.08);
+  }
+  .site-header.mobile-scrolled .nav-toggle{color:var(--ink)}
+  .hero-copy{
+    padding-top:24px!important;
+    padding-bottom:42px!important;
+  }
+  .hero-copy::before{
+    content:"";
+    display:block;
+    width:170px;
+    height:88px;
+    margin:0 auto 24px;
+    background:url('logo-light.webp') center/contain no-repeat;
+    transition:opacity .28s ease,transform .28s ease;
+  }
+  .hero-copy.logo-hidden::before{
+    opacity:0;
+    transform:translateY(-20px);
+  }
+  .hero-divider{margin-top:22px!important;margin-bottom:20px!important;}
+  .hero-mobile-actions{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+    margin-top:34px;
+  }
+  .hero-mobile-actions .primary,
+  .hero-mobile-actions .secondary{
+    width:min(320px,90%);
+    text-align:center;
+    padding:16px 18px;
+    font-weight:600;
+    font-size:15px;
+  }
+  .hero-mobile-actions .primary{
+    background:#d4a542;color:#111;
+  }
+  .hero-mobile-actions .secondary{
+    border:1px solid rgba(255,255,255,.35);color:#fff;
+  }
 }
 
 </style>
@@ -151,7 +168,7 @@ padding-inline:32px;
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <img class="hero-motif" src="hero-motif.webp" alt="">
-      <div class="hero-copy"><img class="hero-logo" src="logo-light.webp" alt="AERRA AXIS logo"><h1 id="hero-title">Strategy for the <span class="gold">next era</span></h1><p class="hero-description">We build political campaigns rooted in culture,<br> sharpened by research, and tested against the ground.</p><div class="hero-divider" aria-hidden="true"><span>•••• ◆ ◆</span><strong>✦</strong><span>◆ ◆ ••••</span></div></div>
+      <div class="hero-copy"><h1 id="hero-title">Strategy for the <span class="gold">next era</span></h1><p class="hero-description">We build political campaigns rooted in culture,<br> sharpened by research, and tested against the ground.</p><div class="hero-divider" aria-hidden="true"><span>•••• ◆ ◆</span><strong>✦</strong><span>◆ ◆ ••••</span></div></div>
     </section>
     <section class="culture" aria-labelledby="culture-title">
       
@@ -173,26 +190,18 @@ Data doesn't replace political instinct, it sharpens it.</p><img class="culture-
     <section class="cta" id="contact" aria-labelledby="cta-title"><p class="eyebrow">Let's Talk</p><h2 id="cta-title">We're selective by design. <span class="gold">Winning campaigns usually are.</span></h2><a class="button" href="mailto:hello@aerraconsulting.com">Start a Conversation</a></section>
   </main>
   <footer class="site-footer"><span>2026 AERRA AXIS | All rights reserved.</span><span class="footer-links"><a href="#">Privacy Policy</a><span aria-hidden="true">|</span><a href="#">Terms of Use</a></span></footer>
-  <script>
-    const toggle=document.querySelector('.nav-toggle');
-    const nav=document.querySelector('.site-nav');
-    toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));toggle.setAttribute('aria-label',open?'Open navigation':'Close navigation');nav.classList.toggle('is-open',!open);});
-    nav.addEventListener('click',event=>{if(event.target.matches('a')){toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');nav.classList.remove('is-open');}});
   
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const nav=document.querySelector('.site-nav');
+toggle.addEventListener('click',()=>{const o=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!o));toggle.setAttribute('aria-label',o?'Open navigation':'Close navigation');nav.classList.toggle('is-open',!o);});
+nav.addEventListener('click',e=>{if(e.target.matches('a')){toggle.setAttribute('aria-expanded','false');nav.classList.remove('is-open');}});
 const header=document.querySelector('.site-header');
-const hero=document.querySelector('.hero');
 const heroCopy=document.querySelector('.hero-copy');
 function mobileHeader(){
- if(window.innerWidth>860){
-   header.classList.remove('mobile-top','mobile-scrolled');
-   heroCopy.classList.remove('logo-hidden');
-   return;
- }
- const logo=document.querySelector('.hero-logo');
- const rect=logo.getBoundingClientRect();
- const headerRect=header.getBoundingClientRect();
- const switchPoint=rect.bottom<=headerRect.bottom+2;
- if(!switchPoint){
+ if(window.innerWidth>860){header.classList.remove('mobile-top','mobile-scrolled');heroCopy.classList.remove('logo-hidden');return;}
+ const heroTop=document.querySelector('.hero').getBoundingClientRect().top;
+ if(heroTop>-72){
    header.classList.add('mobile-top');
    header.classList.remove('mobile-scrolled');
    heroCopy.classList.remove('logo-hidden');
@@ -203,9 +212,9 @@ function mobileHeader(){
  }
 }
 mobileHeader();
-window.addEventListener('scroll',mobileHeader,{passive:true});
-window.addEventListener('resize',mobileHeader);
-
+addEventListener('scroll',mobileHeader,{passive:true});
+addEventListener('resize',mobileHeader);
 </script>
+
 </body>
 </html>
