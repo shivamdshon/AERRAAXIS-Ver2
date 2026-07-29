@@ -1,0 +1,9 @@
+{
+  "name": "aerra-axis-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AERRA AXIS marketing site with a Vercel-hosted Contact Us form powered by Resend.",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}
