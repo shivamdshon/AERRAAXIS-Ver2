@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Start a conversation with AERRA AXIS. Send us the lay of the land and our team will get back to you.">
+  <title>Contact Us | AERRA AXIS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#14202e; --navy-deep:#0e1822; --forest:#16332b; --maroon:#6b1d1c;
+      --cream:#f3ecdd; --warm-cream:#ede3ce; --paper:#faf7f1; --ivory:#f6f1e4;
+      --gold:#dbac18; --gold-soft:#c9a24b; --body:#657485; --ink:#1c2333;
+      --wrap:1180px; --gutter:32px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;overflow-x:hidden;background:var(--cream);color:var(--ink);font-family:"Work Sans",Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none} img{display:block;max-width:100%} button{font:inherit} [id]{scroll-margin-top:var(--header-offset,78px)}
+    .wrap{width:min(var(--wrap),100%);margin-inline:auto;padding-inline:var(--gutter)}
+    .display{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:.025em}
+    .gold{color:var(--gold);font-style:italic;font-weight:500}.eyebrow{font-size:13px;font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+    .skip-link{position:absolute;z-index:1000;top:-100px;left:16px;padding:10px 14px;background:var(--gold);color:var(--navy-deep)}.skip-link:focus{top:16px}
+
+    /* Header (identical to index_beta_v3) */
+    .site-header{height:78px;background:var(--paper);position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(20,32,46,.08)}
+    .header-row{height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;flex:none}.brand-logo{width:124px;height:auto}
+    .site-nav{display:flex;align-items:center}.site-nav-inner{display:flex;align-items:center;gap:38px}.site-nav a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s ease}.site-nav a:hover,.site-nav a:focus-visible,.site-nav a[aria-current="page"]{color:var(--maroon)}
+    .nav-toggle{width:42px;height:42px;display:none;place-content:center;gap:5px;padding:0;border:0;background:transparent;color:var(--ink);cursor:pointer}.nav-toggle span{display:block;width:23px;height:1.5px;background:currentColor;transition:transform .2s ease,opacity .2s ease}.nav-toggle[aria-expanded="true"] span:first-child{transform:translateY(6.5px) rotate(45deg)}.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}.nav-toggle[aria-expanded="true"] span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+
+    /* Contact hero: navy talk panel + cream form panel */
+    .contact-hero{isolation:isolate;position:relative;overflow:hidden;display:grid;grid-template-columns:42fr 58fr;background:var(--cream)}
+    .talk-panel{background:var(--navy);color:var(--ivory);display:flex;align-items:center;padding:64px clamp(28px,4vw,64px)}
+    .talk-panel-inner{max-width:320px}
+    .talk-panel .eyebrow{margin:0 0 22px;color:var(--gold-soft)}
+    .talk-panel h1{margin:0;font:600 clamp(30px,2.7vw,40px)/1.18 "Cormorant Garamond",Georgia,serif;letter-spacing:.03em;text-transform:uppercase}
+    .form-panel{padding:56px clamp(24px,4vw,64px) 64px}
+    .form-panel-inner{max-width:520px}
+    .contact-form{margin:0}
+    .field{margin:0 0 26px}
+    .field label{display:block;margin-bottom:11px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#3c4658}
+    .field input,.field textarea{display:block;width:100%;padding:14px 16px;background:var(--warm-cream);border:1px solid rgba(20,32,46,.1);border-radius:2px;font:500 15px/1.5 "Work Sans",Arial,sans-serif;color:var(--ink);transition:border-color .2s ease,box-shadow .2s ease}
+    .field input::placeholder,.field textarea::placeholder{color:#9a917d}
+    .field input:focus,.field textarea:focus{outline:none;border-color:var(--gold-soft);box-shadow:0 0 0 3px rgba(219,172,24,.14)}
+    .field textarea{min-height:132px;resize:vertical;font-family:inherit}
+    .field.has-error input,.field.has-error textarea{border-color:#a5322c}
+    .field-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:6px}
+    .field-error{margin:0;flex:1;color:#a5322c;font-size:12.5px;font-weight:500;min-height:1px}
+    .char-counter{flex:none;font-size:12px;color:#8b8570;letter-spacing:.02em;white-space:nowrap}
+    .char-counter.is-near-limit{color:#a5322c}
+    .hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
+
+    .submit-row{display:flex;align-items:center;gap:18px;margin-top:6px;flex-wrap:wrap}
+    .submit-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:220px;padding:14px 26px;border:1px solid rgba(28,35,51,.22);background:var(--warm-cream);color:#5c4620;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+    .submit-btn:hover,.submit-btn:focus-visible{transform:translateY(-2px);box-shadow:0 8px 20px rgba(28,35,51,.14)}
+    .submit-btn:disabled{cursor:not-allowed;opacity:.85;transform:none;box-shadow:none}
+    .submit-btn .spinner{display:none;width:14px;height:14px;border:2px solid rgba(92,70,32,.3);border-top-color:#5c4620;border-radius:50%;animation:spin .7s linear infinite}
+    .submit-btn.is-loading .spinner{display:inline-block}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .form-status{margin:0;font-size:13.5px;font-weight:500;letter-spacing:.02em;min-height:1.4em}
+    .form-status.success{color:#2f6b4a}
+    .form-status.error{color:#a5322c}
+
+    /* Divider */
+    .contact-divider{height:13px;background:radial-gradient(circle at 6px 6.5px,#b8201b 2.35px,transparent 2.55px) 0 0/12px 13px repeat-x}
+
+    /* Direct lines */
+    .direct-lines{position:relative;overflow:hidden;background:var(--maroon);color:var(--ivory);padding:88px 24px 96px}
+    .direct-lines::before,.direct-lines::after{content:"";position:absolute;top:0;bottom:0;width:96px;opacity:.16;background:repeating-linear-gradient(135deg,#f0d9a0 0 3px,transparent 3px 16px);pointer-events:none}
+    .direct-lines::before{left:0}
+    .direct-lines::after{right:0}
+    .direct-lines .wrap{position:relative;z-index:1;max-width:560px;text-align:center}
+    .direct-lines h2{margin:0 0 64px;font:600 clamp(32px,3vw,40px)/1.1 "Cormorant Garamond",Georgia,serif;letter-spacing:.02em}
+    .direct-lines-grid{display:flex;flex-direction:column;gap:44px}
+    .direct-line h3{margin:0 0 10px;font:500 italic 20px/1 "Cormorant Garamond",Georgia,serif;font-weight:500;color:var(--gold-soft)}
+    .direct-line p{margin:0;font-size:15px;font-weight:500;letter-spacing:.02em;color:#f1e9df}
+
+    /* Footer (identical to index_beta_v3) */
+    .site-footer{min-height:78px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 5.2vw;color:#222;font-size:13px;font-weight:500;letter-spacing:.025em;text-transform:uppercase}.footer-links{display:flex;gap:10px}.site-footer a:hover,.site-footer a:focus-visible{color:var(--maroon)}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+    @media (min-width:1101px){
+      :root{--header-offset:132px}.site-header{height:132px;position:sticky}.header-row{height:132px;padding-inline:clamp(18px,2vw,34px)}.brand-logo{width:178px}.brand{transform:translateX(-20px);overflow:visible}.site-nav{transform:translateX(18px)}.site-nav-inner{gap:86px}.site-nav a{font-size:14px}
+      .contact-hero{min-height:640px}
+    }
+
+    @media (max-width:1100px){
+      :root{--gutter:24px}.site-header{height:72px}.header-row{height:72px}.brand-logo{width:102px}.nav-toggle{display:grid;margin-right:8px}.site-nav{position:absolute;top:100%;right:0;left:0;box-shadow:0 10px 28px rgba(0,0,0,.08);display:grid;grid-template-rows:0fr;gap:0;overflow:hidden;background:var(--paper);border-bottom:1px solid transparent;transition:grid-template-rows .15s linear}.site-nav.is-open{grid-template-rows:1fr;border-bottom-color:rgba(20,32,46,.12)}.site-nav-inner{display:flex;min-height:0;flex-direction:column;gap:0;overflow:hidden}.site-nav a{padding:24px var(--gutter);border-top:1px solid rgba(20,32,46,.08);font-size:13px;letter-spacing:.14em;text-align:center;color:var(--ink)}
+.site-nav-inner a:last-child{margin:18px 24px 24px;border:2px solid #8b2d2d;border-radius:6px;color:#8b2d2d;font-weight:600}
+
+      .contact-hero{grid-template-columns:1fr;background:linear-gradient(180deg,var(--navy) 0%,#16224b 100%)}
+      .talk-panel{padding:56px 24px 40px;justify-content:center;text-align:center}
+      .talk-panel-inner{max-width:340px;margin-inline:auto}
+      .talk-panel h1{font-size:clamp(32px,9vw,40px)}
+      .form-panel{background:var(--cream);border-radius:20px 20px 0 0;padding:44px 24px 56px}
+      .form-panel-inner{max-width:520px;margin-inline:auto}
+      .submit-btn{width:100%}
+
+      .direct-lines{padding:72px 20px 84px}
+      .direct-lines::before,.direct-lines::after{width:34px;opacity:.12}
+      .direct-lines h2{margin-bottom:48px}
+      .direct-lines-grid{gap:38px}
+
+      .site-footer{min-height:120px;flex-direction:column;justify-content:center;gap:14px;padding:24px;text-align:center;color:#222;font-size:13px;font-weight:500;letter-spacing:.025em;text-transform:uppercase;font-family:'Work Sans',Arial,sans-serif}.footer-links{justify-content:center;gap:12px;font-size:13px}
+    }
+
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.site-nav,.nav-toggle span,.button,.submit-btn{transition:none}.submit-btn .spinner{animation:none}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="AERRA AXIS home"><img class="brand-logo" src="logo-dark.webp" alt="AERRA AXIS"></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary"><div class="site-nav-inner"><a href="index.html#services">Our Services</a><a href="contact.html" aria-current="page">Contact Us</a></div></nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="contact-hero" aria-labelledby="talk-title">
+      <div class="talk-panel">
+        <div class="talk-panel-inner">
+          <p class="eyebrow">Let's Talk</p>
+          <h1 id="talk-title">Start a <span class="gold">Conversation</span></h1>
+        </div>
+      </div>
+      <div class="form-panel">
+        <div class="form-panel-inner">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required aria-required="true" aria-describedby="name-error">
+              <div class="field-meta"><p class="field-error" id="name-error" role="alert"></p></div>
+            </div>
+            <div class="field">
+              <label for="mobile">Mobile Number</label>
+              <input type="tel" id="mobile" name="mobile" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="mobile-error">
+              <div class="field-meta"><p class="field-error" id="mobile-error" role="alert"></p></div>
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" aria-describedby="email-error">
+              <div class="field-meta"><p class="field-error" id="email-error" role="alert"></p></div>
+            </div>
+            <div class="field">
+              <label for="constituency">Constituency and State</label>
+              <input type="text" id="constituency" name="constituency" autocomplete="address-level1" required aria-required="true" aria-describedby="constituency-error">
+              <div class="field-meta"><p class="field-error" id="constituency-error" role="alert"></p></div>
+            </div>
+            <div class="field">
+              <label for="message">Give Us the Lay of the Land</label>
+              <textarea id="message" name="message" rows="5" maxlength="600" placeholder="Where things stand, and what you need from us." required aria-required="true" aria-describedby="message-error message-counter"></textarea>
+              <div class="field-meta">
+                <p class="field-error" id="message-error" role="alert"></p>
+                <span class="char-counter" id="message-counter" aria-live="polite">0 / 600</span>
+              </div>
+            </div>
+
+            <!-- Honeypot: hidden from real visitors, left blank; bots that fill every field will trip it -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Leave this field blank</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="submit-row">
+              <button type="submit" class="submit-btn"><span class="spinner" aria-hidden="true"></span><span class="submit-btn-label">Send the Brief</span></button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="contact-divider" aria-hidden="true"></div>
+
+    <section class="direct-lines" aria-labelledby="direct-lines-title">
+      <div class="wrap">
+        <h2 id="direct-lines-title">Our Direct Lines</h2>
+        <div class="direct-lines-grid">
+          <div class="direct-line">
+            <h3>Write to us</h3>
+            <p><a href="mailto:info@aerraaxis.com">info@aerraaxis.com</a></p>
+          </div>
+          <div class="direct-line">
+            <h3>Call the office</h3>
+            <p><a href="tel:+911111111111">+91 11111 11111</a></p>
+          </div>
+          <div class="direct-line">
+            <h3>Where you can find us</h3>
+            <p>Ludhiana, Chandigarh, and New Delhi</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>2026 AERRA AXIS | All rights reserved.</span><span class="footer-links"><a href="#">Privacy Policy</a><span aria-hidden="true">|</span><a href="#">Terms of Use</a></span></footer>
+
+<script>
+/* Header + mobile nav — identical behaviour to index_beta_v3 */
+const toggle=document.querySelector('.nav-toggle');
+const nav=document.querySelector('.site-nav');
+toggle.addEventListener('click',()=>{const o=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!o));toggle.setAttribute('aria-label',o?'Open navigation':'Close navigation');nav.classList.toggle('is-open',!o);});
+nav.addEventListener('click',e=>{if(e.target.matches('a')){toggle.setAttribute('aria-expanded','false');nav.classList.remove('is-open');}});
+
+/* Contact form: validation, submission, honeypot, a11y state */
+(function(){
+  const form=document.getElementById('contact-form');
+  if(!form) return;
+  const statusEl=document.getElementById('form-status');
+  const submitBtn=form.querySelector('.submit-btn');
+  const submitLabel=submitBtn.querySelector('.submit-btn-label');
+  const textarea=document.getElementById('message');
+  const counter=document.getElementById('message-counter');
+  const MAX_LEN=600;
+
+  function updateCounter(){
+    const len=textarea.value.length;
+    counter.textContent=len+' / '+MAX_LEN;
+    counter.classList.toggle('is-near-limit',len>MAX_LEN-40);
+  }
+  textarea.addEventListener('input',updateCounter);
+  updateCounter();
+
+  const validators={
+    name:v=>v.trim().length>=2,
+    mobile:v=>/^[0-9+()\-\s]{7,16}$/.test(v.trim()),
+    email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    constituency:v=>v.trim().length>=2,
+    message:v=>v.trim().length>=10 && v.trim().length<=MAX_LEN
+  };
+  const errorMessages={
+    name:'Please enter your full name.',
+    mobile:'Enter a valid mobile number.',
+    email:'Enter a valid email address.',
+    constituency:'Please enter your constituency and state.',
+    message:'Tell us a little more — between 10 and 600 characters.'
+  };
+
+  function setFieldError(field,show){
+    const wrap=field.closest('.field');
+    const errorEl=wrap.querySelector('.field-error');
+    wrap.classList.toggle('has-error',show);
+    field.setAttribute('aria-invalid',show?'true':'false');
+    if(errorEl) errorEl.textContent=show?errorMessages[field.name]:'';
+  }
+
+  function validateField(field){
+    const rule=validators[field.name];
+    const ok=rule?rule(field.value):true;
+    setFieldError(field,!ok);
+    return ok;
+  }
+
+  form.querySelectorAll('input[name],textarea[name]').forEach(f=>{
+    if(f.name==='website') return; // skip honeypot
+    f.addEventListener('blur',()=>validateField(f));
+  });
+
+  function setStatus(message,type){
+    statusEl.textContent=message;
+    statusEl.className='form-status'+(type?' '+type:'');
+  }
+
+  let submitting=false;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    if(submitting) return;
+
+    const honeypot=form.querySelector('[name="website"]');
+    if(honeypot && honeypot.value){
+      form.reset();
+      updateCounter();
+      setStatus('Thank you — your brief has been sent.','success');
+      return;
+    }
+
+    const fields=[...form.querySelectorAll('input[name],textarea[name]')].filter(f=>f.name!=='website');
+    let valid=true;
+    let firstInvalid=null;
+    fields.forEach(f=>{ if(!validateField(f)){ valid=false; if(!firstInvalid) firstInvalid=f; } });
+    if(!valid){
+      setStatus('Please fix the highlighted fields.','error');
+      if(firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    submitting=true;
+    submitBtn.disabled=true;
+    submitBtn.setAttribute('aria-busy','true');
+    submitBtn.classList.add('is-loading');
+    submitLabel.textContent='Sending…';
+    setStatus('','');
+
+    try{
+      const payload={
+        name:form.name.value.trim(),
+        mobile:form.mobile.value.trim(),
+        email:form.email.value.trim(),
+        constituency:form.constituency.value.trim(),
+        message:form.message.value.trim(),
+        website:'' // honeypot, always empty for real submissions
+      };
+      const res=await fetch('/api/contact',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error('Request failed with status '+res.status);
+      form.reset();
+      updateCounter();
+      setStatus('Thank you — your brief has been sent. We\u2019ll be in touch shortly.','success');
+    }catch(err){
+      setStatus('Something went wrong sending your brief. Please try again, or email us directly at info@aerraaxis.com.','error');
+    }finally{
+      submitting=false;
+      submitBtn.disabled=false;
+      submitBtn.removeAttribute('aria-busy');
+      submitBtn.classList.remove('is-loading');
+      submitLabel.textContent='Send the Brief';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
